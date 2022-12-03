@@ -1,23 +1,44 @@
 //import 'dart:html';
 import 'dart:io';
-import 'event functions.dart';
+import 'event_functions.dart';
+
+//months - used enumerators because adding all of them as constants is lengthy.
+enum Months {
+  January,
+  February,
+  March,
+  April,
+  May,
+  June,
+  July,
+  August,
+  September,
+  Octobar,
+  November,
+  December
+}
 
 // Venues
 enum Venue {
   CAC_HALL,
   MAIN_AUDITORIUM,
   KICT_MPH,
+  IRK_Hall,
+  EconS_MPH,
 }
 
 void main() {
   String? eventTitle;
   String organizerName;
   String? continueToBook;
-  int eventStartingTime = 8;
-  int eventEndingTime = 5;
-  int eventDate;
+  double eventstartTime = 8.00;
+  double eventendTime = 5.00;
+  int eventmonthNumber;
+  int eventdateNumber;
   bool checkDate;
+  bool checkMonth;
   bool checkVenue;
+  bool? addBooking;
   var currentDate = DateTime.now();
 
   // Back up Intro screen if Html doeesnt work
@@ -32,68 +53,141 @@ void main() {
   var events = <Map>[]; // Storing event details
 
   // User Input -- Arief
-  do 
-  {
-    print("1. Book a new Event");
-    print("2. Check events list");
-    print("Choose (1/2) : ");
+  do {
+    print('Press 1 for Booking new Event');
+    print('');
+    print('Press 2 for Checking Event Schedule');
+    print('');
 
-  //parsing the input to integer
+    //parsing the input to integer
     var chooseFromList = stdin.readLineSync();
-    var chooseFromListintNumber = int.parse(chooseFromList!);
+    var chooseFromListNumber = int.parse(chooseFromList!);
 
-    if (chooseFromListintNumber == 1) 
-    {
-  
-      print("Enter event Title: ");
+    if (chooseFromListNumber == 1) {
+      print("Enter the event Title: ");
       eventTitle = stdin.readLineSync();
-  
-      print("Enter Organizer Name:");
+
+      print("Enter Organizer(s) Name:");
       organizerName = stdin.readLineSync()!;
 
-      print("Select Schedule for the events (Date, Month, Year)");
-    
-    }
-  
+      print("Select Date for the Event you wish to create");
 
-  // Date validation -- Zawad
+      print("Choose Month: ");
 
+      //display all months name
+      Months.values.forEach((month) {
+        print('${month.index + 1}. ${month.name}');
+      });
 
+      //month validation
+      do {
+        print("Choose the Month by inserting the Months' number (1-12) ");
+        var eventMonth = stdin.readLineSync();
+        eventmonthNumber = int.parse(eventMonth!);
 
+        checkMonth = false;
 
-  // Venue validation -- Arief
-  //display all available venue
-      Venue.values.forEach((venue) 
-      {
+        if (eventmonthNumber < 1 || eventmonthNumber > 12) {
+          print('Wrong Input!, Please try again ( 1 - 12 )');
+          checkMonth = true;
+        }
+        --eventmonthNumber;
+      } while (checkMonth == true);
+
+      // Date validation -- Zawad
+      do {
+        print("Choose a Date between (1 - 31): ");
+        var eventDate = stdin.readLineSync();
+        eventdateNumber = int.parse(eventDate!);
+
+        checkDate = false;
+
+        if (eventdateNumber < 1 || eventdateNumber > 31) {
+          print('Error, A month only can have upto 31 days try again.');
+          checkDate = true;
+        } else {
+          var month = eventmonthNumber;
+          month++;
+
+          if (currentDate.month == month) {
+            if (eventdateNumber <= currentDate.day) {
+              print(
+                  'Wrong Input! Date must be gretter that ${Months.values[currentDate.month - 1].name} ${currentDate.day}');
+              checkDate = true;
+            }
+          } else if (currentDate.month != month) {}
+        }
+      } while (checkDate == true);
+
+      print("Select Venue");
+
+      // Venue validation -- Arief
+
+      // display all available venues in the system
+
+      Venue.values.forEach((venue) {
         print('${venue.index + 1}. ${venue.name}');
       });
 
-      var selectVenueintNumber;
+      var selectvenueNumber;
 
-    do 
-    {
-        print("Choose (1/2): ");
+      do {
+        print("Press 1 To choose the 1st Venue ");
+        print('');
+        print("Press 2 To choose the 2nd Venue");
+        print('');
+        print("Press 3 To choose the 3rd Venue");
+        print('');
+        print("Press 4 To choose the 4th Venue");
+        print('');
+        print("Press 5 To choose the 5th Venue");
+
         var selectVenue = stdin.readLineSync();
-        selectVenueintNumber = int.parse(selectVenue!);
+        selectvenueNumber = int.parse(selectVenue!);
 
         checkVenue = false;
 
-        if (selectVenueintNumber < 1 || selectVenueintNumber > 2) 
-        {
-          print('Wrong Input');
+        if (selectvenueNumber < 1 || selectvenueNumber > 3) {
+          print('Wrong Input, please try again');
           checkVenue = true;
         }
-        selectVenueintNumber--;
-      } 
-      while (checkVenue == true);
-  
-  // Booking validation -- Zawad
 
-  
-  
-  //ask user is he/she want to continue to end the program
-    print('Do you want to continue: (Y/N) : ');
+        selectvenueNumber--;
+      } while (checkVenue == true);
+
+      //check if event is classing based on day,month,year and venue
+      //check if event is classing based on day,month,year and venue
+      addBooking = checkOverlap(
+          date: eventdateNumber,
+          month: eventmonthNumber,
+          events: events,
+          venue: selectvenueNumber);
+
+      if (addBooking == true) {
+        // if event is not clasing the add new event to the local storage List
+        events.add({
+          'Event Title': eventTitle,
+          'Event Organizer Name': organizerName,
+          'Event Date': eventdateNumber,
+          'Event Month': Months.values[eventmonthNumber].name,
+          'Event Starting Time': eventstartTime,
+          'Event Closing Time': eventendTime,
+          'Event Venue': Venue.values[selectvenueNumber].name,
+        });
+
+        print('Booking Successfully created');
+      } else if (addBooking == false) {
+        print(
+            'Booking Failed! Overlap with another event. Please Choose a different date');
+      }
+    } else if (chooseFromListNumber == 2) {
+      printDetails(events);
+    } else {
+      print('Wrong Input');
+    }
+
+    //ask user whether he/she wants to continue or exit the program
+    print('Do you want to continue: (Yes/No) : ');
     continueToBook = stdin.readLineSync();
-  } 
-  while (continueToBook == 'Y' || continueToBook == 'y');
+  } while (continueToBook == 'Yes' || continueToBook == 'yes');
 }
