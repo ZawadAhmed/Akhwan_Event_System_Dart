@@ -1,6 +1,6 @@
 import 'main.dart';
 
-//function to cheeck clash of any events
+//function to cheeck Overlapping of any events
 bool? checkOverlap({
   required List events,
   required int date,
@@ -12,23 +12,23 @@ bool? checkOverlap({
       if (events[x]['Event Month'] == Months.values[month].name) {
         if (events[x]['Event Date'] == date) {
           if (events[x]['Event Venue'] == Venue.values[venue].name) {
-            //if new event is clashing with previously booked one return false
+            //if new event is Overlapping with previously booked one return false
             return false;
           } else {
-            //if new event is not clashing with previously booked one return true
+            //if new event is not Overlapping with previously booked one return true
             return true;
           }
         } else {
-          //if new event is not clashing with previously booked one return true
+          //if new event is not Overlapping with previously booked one return true
           return true;
         }
       } else {
-        //if new event is not clashing with previously booked one return true
+        //if new event is not Overlapping with previously booked one return true
         return true;
       }
     }
   } else {
-    //if new event is not clashing with previously booked one return true
+    //if new event is not Overlapping with previously booked one return true
     return true;
   }
 }
