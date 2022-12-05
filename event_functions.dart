@@ -48,8 +48,8 @@ void printDetails(List events) {
       print('');
       print('Date: ${events[x]['Event Date']} ');
       print('Month: ${events[x]['Event Month']} ');
-      print('Starting Time: ${events[x]['Event Starting Time']} AM');
-      print('Closing Time: ${events[x]['Event Closing Time']} PM');
+      print('Starting Time: ${events[x]['Event Starting Time']}0 AM');
+      print('Closing Time: ${events[x]['Event Closing Time']}0 PM');
       print('Venue: ${events[x]['Event Venue']} ');
       print('');
     }

@@ -13,13 +13,6 @@
 ### Tasks Assigned
 
 | Zawad Wasik Ahmed   | Arief Iskandar Bin Shaffei |
-<<<<<<< Updated upstream
-| ------------- |:-------------:|
-|               |                | 
-
- ### Brief Description 
-
-=======
 | --------------------------------------------------|:--------------------------------------:|
 |     1. Setting Variables                          |     1. Storing event details           | 
 |     2. Creating conditions for Date Validation    |     2. Creating User Input             |
@@ -35,4 +28,3 @@ Our system contains the following features:
 1. Distinguish between months that have 31 days and 30 days. Shows an error if the date chosen is more than the range.
 2. Each event is a full day event. No event cannot be held on the same day in the same venue, users can book a different venue for the same day but booking the same venue who result in an error.
 3. Will display an error if there are any clashes of booking the same venue and date. 
->>>>>>> Stashed changes
