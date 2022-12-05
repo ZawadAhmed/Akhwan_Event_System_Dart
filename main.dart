@@ -13,7 +13,7 @@ enum Months {
   July,
   August,
   September,
-  Octobar,
+  October,
   November,
   December
 }
@@ -111,10 +111,16 @@ void main() {
 
           if (currentDate.month == month) {
             if (eventdateNumber <= currentDate.day) {
-              print(
-                  'Wrong Input! Date must be gretter that ${Months.values[currentDate.month - 1].name} ${currentDate.day}');
+              print('Wrong Input! Date must be gretter than ${Months.values[currentDate.month - 1].name} ${currentDate.day}');
               checkDate = true;
             }
+
+
+            
+          //ZAWAD TURN TO FIX THE UNFIXABLE
+
+
+
           } else if (currentDate.month != month) {}
         }
       } while (checkDate == true);
@@ -147,7 +153,7 @@ void main() {
 
         checkVenue = false;
 
-        if (selectvenueNumber < 1 || selectvenueNumber > 3) {
+        if (selectvenueNumber < 1 || selectvenueNumber > 5) {
           print('Wrong Input, please try again');
           checkVenue = true;
         }
@@ -155,8 +161,7 @@ void main() {
         selectvenueNumber--;
       } while (checkVenue == true);
 
-      //check if event is classing based on day,month,year and venue
-      //check if event is classing based on day,month,year and venue
+      //check if event is overlaping based on day,month,year and venue
       addBooking = checkOverlap(
           date: eventdateNumber,
           month: eventmonthNumber,
@@ -190,4 +195,7 @@ void main() {
     print('Do you want to continue: (Yes/No) : ');
     continueToBook = stdin.readLineSync();
   } while (continueToBook == 'Yes' || continueToBook == 'yes');
+
+  print("");
+  print("~~~~~~~~Thank you for using our system!~~~~~~~~");
 }

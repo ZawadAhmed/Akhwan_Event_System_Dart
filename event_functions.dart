@@ -1,6 +1,6 @@
 import 'main.dart';
 
-//function to cheeck clash of any events
+//function to check overlaping of any events
 bool? checkOverlap({
   required List events,
   required int date,
@@ -12,23 +12,23 @@ bool? checkOverlap({
       if (events[x]['Event Month'] == Months.values[month].name) {
         if (events[x]['Event Date'] == date) {
           if (events[x]['Event Venue'] == Venue.values[venue].name) {
-            //if new event is clashing with previously booked one return false
+            //if new event is overlaping with previously booked one return false
             return false;
           } else {
-            //if new event is not clashing with previously booked one return true
+            //if new event is not overlaping with previously booked one return true
             return true;
           }
         } else {
-          //if new event is not clashing with previously booked one return true
+          //if new event is not overlaping with previously booked one return true
           return true;
         }
       } else {
-        //if new event is not clashing with previously booked one return true
+        //if new event is not overlaping with previously booked one return true
         return true;
       }
     }
   } else {
-    //if new event is not clashing with previously booked one return true
+    //if new event is not overlaping with previously booked one return true
     return true;
   }
 }
@@ -39,22 +39,22 @@ void printDetails(List events) {
 
   // if the list is not empthy print all events
   if (events.length != 0) {
-    for (int x = 0; x < events.length; x++) {
-      print('Event Details - Booking Number: ${x + 1}000TX');
+    for (int i = 0; i < events.length; i++) {
+      print('Event Details - Booking Number: ${i + 1}000TX');
       print('---------------------------------------------');
-      print('Title: ${events[x]['Event Title']} ');
+      print('Title: ${events[i]['Event Title']} ');
       print('');
-      print('Event Organizer Name: ${events[x]['Event Organizer Name']} ');
+      print('Event Organizer Name: ${events[i]['Event Organizer Name']} ');
       print('');
-      print('Date: ${events[x]['Event Date']} ');
-      print('Month: ${events[x]['Event Month']} ');
-      print('Starting Time: ${events[x]['Event Starting Time']} AM');
-      print('Closing Time: ${events[x]['Event Closing Time']} PM');
-      print('Venue: ${events[x]['Event Venue']} ');
+      print('Date: ${events[i]['Event Date']} ');
+      print('Month: ${events[i]['Event Month']} ');
+      print('Starting Time: ${events[i]['Event Starting Time']}0 AM');
+      print('Closing Time: ${events[i]['Event Closing Time']}0 PM');
+      print('Venue: ${events[i]['Event Venue']} ');
       print('');
     }
   } else {
-    // if the list is empthy
+    // if the list is empty
     print('No information available, Create a booking now!');
   }
 }
