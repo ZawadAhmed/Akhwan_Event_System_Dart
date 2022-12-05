@@ -39,18 +39,18 @@ void printDetails(List events) {
 
   // if the list is not empthy print all events
   if (events.length != 0) {
-    for (int x = 0; x < events.length; x++) {
-      print('Event Details - Booking Number: ${x + 1}000TX');
+    for (int i= 0; i < events.length; i++) {
+      print('Event Details - Booking Number: ${i + 1}000TX');
       print('---------------------------------------------');
-      print('Title: ${events[x]['Event Title']} ');
+      print('Title: ${events[i]['Event Title']} ');
       print('');
-      print('Event Organizer Name: ${events[x]['Event Organizer Name']} ');
+      print('Event Organizer Name: ${events[i]['Event Organizer Name']} ');
       print('');
-      print('Date: ${events[x]['Event Date']} ');
-      print('Month: ${events[x]['Event Month']} ');
-      print('Starting Time: ${events[x]['Event Starting Time']}0 AM');
-      print('Closing Time: ${events[x]['Event Closing Time']}0 PM');
-      print('Venue: ${events[x]['Event Venue']} ');
+      print('Date: ${events[i]['Event Date']} ');
+      print('Month: ${events[i]['Event Month']} ');
+      print('Starting Time: ${events[i]['Event Starting Time']}0 AM');
+      print('Closing Time: ${events[i]['Event Closing Time']}0 PM');
+      print('Venue: ${events[i]['Event Venue']} ');
       print('');
     }
   } else {
