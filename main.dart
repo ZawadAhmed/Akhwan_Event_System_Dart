@@ -42,18 +42,22 @@ void main() {
   var currentDate = DateTime.now();
 
   // Back up Intro screen if Html doeesnt work
-  print('------------------------------');
-  print('-           WELCOME          -');
-  print('-             TO             -');
-  print('-            AKHWAN          -');
-  print('------------------------------');
-  print('-   Event Management System  -');
-  print('------------------------------');
+  print("""      ------- ---------------------------
+                     WELCOME          
+
+                       TO
+
+                      AKHWAN
+
+          ------------------------------
+              Event Management System  
+          ------------------------------""");
 
   var events = <Map>[]; // Storing event details
 
   // User Input -- Arief
   do {
+    print('');
     print('Press 1 for Booking new Event');
     print('');
     print('Press 2 for Checking Event Schedule');
@@ -112,10 +116,32 @@ void main() {
           if (currentDate.month == month) {
             if (eventdateNumber <= currentDate.day) {
               print(
+<<<<<<< Updated upstream
                   'Wrong Input! Date must be gretter that ${Months.values[currentDate.month - 1].name} ${currentDate.day}');
               checkDate = true;
             }
           } else if (currentDate.month != month) {}
+=======
+                  'Wrong Input! Date must be gretter than ${Months.values[currentDate.month - 1].name} ${currentDate.day}');
+              checkDate = true;
+            }
+            if (eventmonthNumber % 2 == 0) {
+              if (eventdateNumber > 31) {
+                print(
+                    '${Months.values[currentDate.month - 1].name}  only  has 31 days');
+                checkDate = true;
+              }
+            }
+          } else if (currentDate.month != month) {
+            if (eventmonthNumber % 2 != 0) {
+              if (eventdateNumber > 30) {
+                print(
+                    '${Months.values[eventmonthNumber].name}  only has 30 days');
+                checkDate = true;
+              }
+            }
+          }
+>>>>>>> Stashed changes
         }
       } while (checkDate == true);
 
@@ -132,15 +158,15 @@ void main() {
       var selectvenueNumber;
 
       do {
-        print("Press 1 To choose the 1st Venue ");
-        print('');
-        print("Press 2 To choose the 2nd Venue");
-        print('');
-        print("Press 3 To choose the 3rd Venue");
-        print('');
-        print("Press 4 To choose the 4th Venue");
-        print('');
-        print("Press 5 To choose the 5th Venue");
+        print("""Press 1 To choose the 1st Venue 
+       
+                 Press 2 To choose the 2nd Venue
+        
+                 Press 3 To choose the 3rd Venue
+
+                 Press 4 To choose the 4th Venue
+
+                 Press 5 To choose the 5th Venue""");
 
         var selectVenue = stdin.readLineSync();
         selectvenueNumber = int.parse(selectVenue!);
@@ -190,4 +216,11 @@ void main() {
     print('Do you want to continue: (Yes/No) : ');
     continueToBook = stdin.readLineSync();
   } while (continueToBook == 'Yes' || continueToBook == 'yes');
+<<<<<<< Updated upstream
+=======
+
+  print("""
+
+          ~~~~~~~~Thank you for using our system!~~~~~~~~""");
+>>>>>>> Stashed changes
 }
