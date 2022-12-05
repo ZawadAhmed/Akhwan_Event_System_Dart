@@ -27,6 +27,7 @@ enum Venue {
   EconS_MPH,
 }
 
+// Variables decalaration - Zawad
 void main() {
   String? eventTitle;
   String organizerName;
@@ -78,12 +79,12 @@ void main() {
 
       print("Choose Month: ");
 
-      //display all months name
+      //display all months name   - Zawad
       Months.values.forEach((month) {
         print('${month.index + 1}. ${month.name}');
       });
 
-      //month validation
+      //month validation  - Arief
       do {
         print("Choose the Month by inserting the Months' number (1-12) ");
         var eventMonth = stdin.readLineSync();
@@ -116,12 +117,6 @@ void main() {
           if (currentDate.month == month) {
             if (eventdateNumber <= currentDate.day) {
               print(
-<<<<<<< Updated upstream
-                  'Wrong Input! Date must be gretter that ${Months.values[currentDate.month - 1].name} ${currentDate.day}');
-              checkDate = true;
-            }
-          } else if (currentDate.month != month) {}
-=======
                   'Wrong Input! Date must be gretter than ${Months.values[currentDate.month - 1].name} ${currentDate.day}');
               checkDate = true;
             }
@@ -141,7 +136,6 @@ void main() {
               }
             }
           }
->>>>>>> Stashed changes
         }
       } while (checkDate == true);
 
@@ -173,7 +167,7 @@ void main() {
 
         checkVenue = false;
 
-        if (selectvenueNumber < 1 || selectvenueNumber > 3) {
+        if (selectvenueNumber < 1 || selectvenueNumber > 5) {
           print('Wrong Input, please try again');
           checkVenue = true;
         }
@@ -181,8 +175,7 @@ void main() {
         selectvenueNumber--;
       } while (checkVenue == true);
 
-      //check if event is classing based on day,month,year and venue
-      //check if event is classing based on day,month,year and venue
+      //check if event is overlapping based on day,month,year and venue
       addBooking = checkOverlap(
           date: eventdateNumber,
           month: eventmonthNumber,
@@ -190,7 +183,7 @@ void main() {
           venue: selectvenueNumber);
 
       if (addBooking == true) {
-        // if event is not clasing the add new event to the local storage List
+        // if event is not overlapping then add new event to the list
         events.add({
           'Event Title': eventTitle,
           'Event Organizer Name': organizerName,
@@ -216,11 +209,6 @@ void main() {
     print('Do you want to continue: (Yes/No) : ');
     continueToBook = stdin.readLineSync();
   } while (continueToBook == 'Yes' || continueToBook == 'yes');
-<<<<<<< Updated upstream
-=======
 
-  print("""
-
-          ~~~~~~~~Thank you for using our system!~~~~~~~~""");
->>>>>>> Stashed changes
+  print("""         ~~~~~~~~Thank you for using our system!~~~~~~~~""");
 }
