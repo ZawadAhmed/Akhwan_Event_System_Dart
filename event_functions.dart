@@ -1,6 +1,6 @@
 import 'main.dart';
 
-//function to cheeck Overlapping of any events
+//function to check Overlapping of any events
 bool? checkOverlap({
   required List events,
   required int date,
@@ -37,7 +37,7 @@ bool? checkOverlap({
 void printDetails(List events) {
   print('--------All Booked Events---------');
 
-  // if the list is not empthy print all events
+  // if the list is not empty print all events
   if (events.length != 0) {
     for (int i= 0; i < events.length; i++) {
       print('Event Details - Booking Number: ${i + 1}000TX');
@@ -54,7 +54,7 @@ void printDetails(List events) {
       print('');
     }
   } else {
-    // if the list is empthy
+    // if the list is empty
     print('No information available, Create a booking now!');
   }
 }
